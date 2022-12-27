@@ -1,5 +1,6 @@
 var pos=[];
 var posR=[];
+var posF=[];
 
 var gapx=10;
 var gapy=15;
@@ -60,18 +61,30 @@ function setup() {
     }
   }
 
-
+  var tempVect
   for(var i=0;i<pos.length;i++){
     // text('1',pos[i].x,pos[i].y)
+
+    // if(x<0.5) x=map(x,0,0.5,-200,-100)
+    // else x=map(x,0,0.5,width+100,width+200)
+
+    // if(y<0.5) y=map(y,0,0.5,-200,-100)
+    // else y=map(y,0,0.5,height+100,height+200)
+
     var x=map(random(),0,1,10,width-10)
     var y=map(random(),0,1,10,height-10)
     var vect=createVector(x,y)
+    tempVect=createVector(x,y)
 
     posR.push(vect);
+    posF.push(tempVect);
   }
+
+
 
   
 }
+
 
 
 function draw() {
@@ -81,15 +94,27 @@ function draw() {
   // capturer.start()
   
   background(20);
-
-  for(var i=0;i<posR.length;i++){
-    text('1',posR[i].x,posR[i].y);
-
-    var v=p5.Vector.sub(pos[i],posR[i]);
-    posR[i].add(v.div(25))
-  }
-
   
+  if(frameCount>300){
+    for(var i=0;i<posF.length;i++){
+      text('1',posR[i].x,posR[i].y);
+  
+      var v=p5.Vector.sub(posF[i],posR[i]);
+      posR[i].add(v.div(25))
+    }
+
+  }
+  
+  else{  
+      for(var i=0;i<posR.length;i++){
+        text('1',posR[i].x,posR[i].y);
+    
+        var v=p5.Vector.sub(pos[i],posR[i]);
+        posR[i].add(v.div(25))
+      }
+    }
+
+
 
 
   
@@ -99,14 +124,14 @@ function draw() {
 
   // record the canvas(end)
   
-  // var sec=3 //seconds to capture
+  // var sec=420/60 //seconds to capture
   // if(frameCount< 60*sec){
   //   capturer.capture(canvas)
   // }
   // else if(frameCount ===60*sec ){
-  //   capturer.save();
-  //   capturer.stop();
-  // }
+  //  capturer.save();
+  //  capturer.stop();
+  //}
 
 }
 
