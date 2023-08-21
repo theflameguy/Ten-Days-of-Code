@@ -1,5 +1,5 @@
 # Ten-Days-of-Code
-Trying something for 10 days
+Trying something for 10 days (under process...)
 
 Here are the previews:
 
